@@ -1,7 +1,6 @@
 import io
 import gzip
 import sys
-import urllib
 import urllib.parse
 import urllib.request
 import re
@@ -14,7 +13,6 @@ def getPage(url):
     request.add_header('User-Agent','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.20 (KHTML, like Gecko) Chrome/19.0.1036.7 Safari/535.20')
     response = urllib.request.urlopen(request)
     if response.info().get('Content-Encoding') == 'gzip':
-        # buf = StringIO(response.read())
         buf = io.BytesIO(response.read())
         f = gzip.GzipFile(fileobj=buf)
         data = f.read()
